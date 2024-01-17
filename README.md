@@ -42,3 +42,15 @@ git config --list查看，配置正确
 35.   删除标签 git tag -d，但是意上述命令并不会从任何远程仓库中移除这个标签。
 36.   必须用 git push :refs/tags/ 来更新你的远程仓库，直观：git push origin --delete
 
+第三章 Git分支管理（保证多人协助互不影响）   
+1. git branch查看分支，后面加参数的话创建分支
+2. git checkout 分支名，切换到分支名    
+3. 合并分支：切换到主（要合并到的分支）分支后，git merge 被合并的分支，注意合并之后，被合并的分支仍然存在，但是文件合并了   
+4. 合并时，如果主分支和分支都对文件进行修改，就有冲突了，可以使用git status查看状态
+5. 冲突之后手动合并、或者用git merge --abort放弃合并，或者使用mergetool（略过，还不会）    
+6. 当push本地分支到远程时，先查看远程库的信息：git remote -v（得到origin名字，后面用），同时需要指定具体的本地分支：git push origin master
+7. git pull合并分支
+8. 删除分支，本地的话git branch -d 接分支名，强行删除用-D, 远程分支用git push origin --delete 接分支名
+9. 分支重命名git branch -m 旧的名字 新的名字，push到远程需要+2步骤，1）git push origin newBranchName # 将新的分支推送到远程。2）git push --delete origin oldBranchName # 删除远程的旧的分支
+
+
