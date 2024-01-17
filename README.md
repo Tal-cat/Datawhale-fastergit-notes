@@ -53,4 +53,8 @@ git config --list查看，配置正确
 8. 删除分支，本地的话git branch -d 接分支名，强行删除用-D, 远程分支用git push origin --delete 接分支名
 9. 分支重命名git branch -m 旧的名字 新的名字，push到远程需要+2步骤，1）git push origin newBranchName # 将新的分支推送到远程。2）git push --delete origin oldBranchName # 删除远程的旧的分支
 
+第四章 Git 工具（不常用的常用工具）   
+1. frok以下项目作为示范使用https://github.com/datawhalechina-git-samples/app
+2. 个人习惯使用Github desktop clone到指定位置   
+
 
