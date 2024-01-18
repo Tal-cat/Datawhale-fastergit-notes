@@ -54,7 +54,40 @@ git config --list查看，配置正确
 9. 分支重命名git branch -m 旧的名字 新的名字，push到远程需要+2步骤，1）git push origin newBranchName # 将新的分支推送到远程。2）git push --delete origin oldBranchName # 删除远程的旧的分支
 
 第四章 Git 工具（不常用的常用工具）   
-1. frok以下项目作为示范使用https://github.com/datawhalechina-git-samples/app
-2. 个人习惯使用Github desktop clone到指定位置   
+1. fork以下项目作为示范使用https://github.com/datawhalechina-git-samples/app
+2. 个人习惯使用Github desktop clone到指定位置
+3. git log查看提交日志，commit 后跟的 40 位的字符是 SHA-1 哈希值，以保证数据完整性
+4. 查看某一次提交的信息：git show 40位的SHA-1值（也可以缩短，需要确保没有歧义）
+5. 确保没歧义时使用简写：git log --abbrev-commit，也可以使用--pretty=oneline简化输出内容
+6. 查看本地分支：git branch,* 表示当前工作的分支.
+7. 查看远程分支：git branch -r（其实就是remote，加个参数而已）
+8. 查看HEAD分支的【最后一次】提交信息：git show stable， branch 的名称和当前目录名称重名会提示ambiguous argument 'stable'，需要使用--明确告知，-- 前面的为 revision 可以是分支，tag 等，-- 后面的为 file 即要操作的文件
+9. 查看特定分支SHA-1：git rev-parse 分支名
+10. 查看引用日志：git reflog(不就是reference log),记录了最近几个月 HEAD 和分支引用所指向的历史。
+11. 查看特定分支的几次前的提交：git show HEAD@{2}就是仓库中 HEAD 在 2 次前的所指向的提交。
+12. 交互式暂存：修改大量文件后，希望将改动拆分成多个提交而不是一起提交：git add 后加 -i 或者 --interactive，暂存一部分时在i界面之后选patch（p或者5）
+13. 存储修改（比如改累了看别的的时候）：git stash 将未完成的修改保存至一个栈上
+14. 找到之前不干了的工作：git stash list，之后使用git stash apply stash@{n}指定去哪个。
+15. 彻底不干了：git stash drop 或者 git stash pop
+16. 清理目录：git clean会移除未被跟踪的文件，可以考虑执行 git stash --all 来移除所有文件并保存到栈上。
+17. 强制清理：git clean -f（force） -d 命令来移除工作目录中所有未追踪的文件以及空的子目录。使用--dry-run或者-n选项来执行命令，【只告诉你会删除什么，而不会真的删除】.
+18. 清理漏网之鱼：git clean 命令只会移除没有忽略的未跟踪文件。任何与 .gitignore 或其他忽略文件中的模式匹配的文件都不会被移除。如果也想移除，可以通过增加选项【-x】，增加选项-d删除目录。
+19. 交互式删除还是i。
+20. 搜索：git grep，默认查找工作目录文件。用-n或者--line-number显示匹配的行号，-c或者--count输出统计信息，-p 或者 --show-function  显示每个匹配字符串所在的方法或函数
+21. 日志搜索：git log -S显示内容的新增和删除提交记录，-L进行行日志搜索，展示代码中一行或者一个函数的历史。
+22. 搜索无法匹配到你的函数或者方法，使用通过正则表达式：git log -L '/percentileBoundary/',/^}/:src/trace/histogram.go
+23. 子模块添加：git submodule add
+24. clone 一个含子模块的项目时，默认是不会包含子模块内容的，只有目录。
+25. 获取子模块内容：1） git submodule init 初始化本地配置文件。2） git submodule update 则从该项目中抓取所有数据并检出父项目中列出的合适的提交。
+26. 更简单的含有子模块复制：git clone --recurse-submodules  https://github.com/datawhalechina-git-samples/app.git new_app2
+27. 如果已经克隆了项目但忘记了 --recurse-submodules，那么可以运行 git submodule update --init合并成一步。如果还要初始化、抓取并检出任何嵌套的子模块，请使用简明的 git submodule update --init --recursive。
+28. 更新子模块：git submodule update --remote，默认会更新 main 分支，想设置为其他分支在 .gitmodules 文件中设置： git config -f .gitmodules submodule.model.branch stable
+29. 很多子模块的话，可以传递想要更新的子模块的名字。如 git submodule update --remote model
+30. 打包：git bundle：如果希望这个仓库可以在别处被克隆，增加一个 HEAD 引用。git bundle create repo.bundle HEAD main
+31. 打包之后解压：git clone repo.bundle repo
+32. 解压缺HEAD：需要在命令后指定一个 -b main 或者其他被引入的分支， 否则 Git 不知道应该检出哪一个分支。
+
+
+
 
 
