@@ -104,6 +104,15 @@ git config --list查看，配置正确
 14. config文件 —— 环境变量3种：1）系统变量git config --system；2）用户变量git config --global；3）本地项目变量git config --local，存储位置：.git/config。
 15. 配置常用：1）查看所有配置	git config --list；2）配置用户名	git config --global user.name "你的用户名"；3）配置邮箱	git config --global user.email "你的邮箱"。
 
+第六章 GitFlow工作流实战（实际应用的项目管理）    
+1. Feature分⽀：临时分⽀、开发阶段。由Develop分⽀产⽣，最终合并到Develop分⽀。
+2. Develop分⽀：贯穿整个项⽬。不能提交，由Feature分⽀+Bugfix分⽀+Release 分⽀+Hotfix分⽀合并代码。
+3. Release分⽀：临时分⽀、发版阶段。由Master分⽀产⽣， 最终合并到Develop分⽀和Master分支。
+4. Hotfix分⽀：⽤于解决线上bug，临时分⽀、紧急修复阶段。由Master分⽀产⽣，最终合并到Develop分⽀和Master分支。
+5. Master（Production）分⽀：记录历史发布版本。不能提交，由Release、Hotfix分⽀合并代码。
+6. 分支理解：1）⽣命周期：Master分⽀和Develop分⽀贯穿项⽬；其他分⽀均为承担特定职责的临时分⽀。2）项⽬阶段（时间上可能重叠）：i)开发阶段：主要涉及Feature分⽀、Develop分⽀；ii)发布阶段：主要涉及Release分⽀、Production分⽀、Develop分⽀；iii)紧急修复阶段 主要涉及Hotfix分⽀、Production分⽀、Develop分⽀。3)成员关注点: i)开发⼈员：关注Develop分⽀、Feature分⽀以及特殊阶段关注Hotfix、Release分⽀的bug修复；ii)测试⼈员：关注 Release分⽀、Hotfix分⽀的功能测试；iii)项⽬经理：关注Production分⽀、Release分⽀。
+
+
 
 
 
