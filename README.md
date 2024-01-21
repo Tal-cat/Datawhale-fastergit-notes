@@ -85,7 +85,8 @@ git config --list查看，配置正确
 29. 很多子模块的话，可以传递想要更新的子模块的名字。如 git submodule update --remote model
 30. 打包：git bundle：如果希望这个仓库可以在别处被克隆，增加一个 HEAD 引用。git bundle create repo.bundle HEAD main
 31. 打包之后解压：git clone repo.bundle repo
-32. 解压缺HEAD：需要在命令后指定一个 -b main 或者其他被引入的分支， 否则 Git 不知道应该检出哪一个分支。     
+32. 解压缺HEAD：需要在命令后指定一个 -b main 或者其他被引入的分支， 否则 Git 不知道应该检出哪一个分支。
+
 第五章 Git内部原理
 1. 围绕本地仓库下名为 .git 的隐藏目录
 2. .git目录包含了几乎所有 Git 存储和操作内容。若想备份或复制一个【版本库】，只需将该目录拷贝至另一处即可。
