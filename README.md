@@ -86,6 +86,22 @@ git config --list查看，配置正确
 30. 打包：git bundle：如果希望这个仓库可以在别处被克隆，增加一个 HEAD 引用。git bundle create repo.bundle HEAD main
 31. 打包之后解压：git clone repo.bundle repo
 32. 解压缺HEAD：需要在命令后指定一个 -b main 或者其他被引入的分支， 否则 Git 不知道应该检出哪一个分支。
+第五章 Git内部原理
+1. 围绕本地仓库下名为 .git 的隐藏目录
+2. .git目录包含了几乎所有 Git 存储和操作内容。若想备份或复制一个【版本库】，只需将该目录拷贝至另一处即可。
+3. 【划重点】里面的config就是修改HTTPS还是SSH连接的！救了大命！
+4. 对象存储-objects: 目录下存储三种对象：数据对象（blob，个人理解是对修改信息的描述，如version 1），树对象（tree，树结构，比如文件夹里的文件）和提交对象（commit）。
+5. 存储时Git会根据对象内容生成一个【40位数】 SHA-1 哈希值（就是前面一直说的，也叫校验和）。校验和的前两个字符 => 用于命名子目录，余下的 38 个字符 => 用于文件名。将对象内容存储在 子目录/文件名 内。
+6. 以根据校验和，查看存储的内容及对象类型。# 查看文件类型：1）git cat-file -t 40fa006a9f641b977fc7b3b5accb0171993a3d31 2）blob；# 查看文件内容：1）git cat-file -p 40fa006a9f641b977fc7b3b5accb0171993a3d31 2）file inside folder1
+7. 存储机制：时不时将多个对象打包成一个称为"包文件"。使用git gc进行【手动】打包，git push时也会【自动】打包。pack内出现包文件.pack和包索引.idx文件。
+8. 引用-refs：Git把一些常用的 SHA-1 值存储在文件中，用文件名来替代，这些别名就称为引用。有三种引用类型：heads, remotes和tags。
+9. HEAD引用2种类型：1）分支级别，.git/refs/heads目录下，记录本地分支的最后一次提交。有多少个分支，就有多少个同名的HEAD引用。文件内容是commitHash。2）代码库级别，.git/HEAD文件，指代当前代码所处的分支；拓展：也可指代commitHash（称为分离HEAD）。
+10. 远程引用：.git/refs/remotes 目录下，远程仓库各分支的最后一次提交，文件【只读】。
+11. 标签引用：.git/refs/heads 目录下，可以指向任何类型（更多的是指向一个commit，赋予它一个更友好的名字）。文件内容：SHA-1值。
+12. stash：.git/refs/stash 文件，指代的是暂存（见前）。
+13. 【重点来了】引用规范-config文件：注意这个[remote "origin"] url = https://github.com/datawhalechina/faster-git.git，连不上就改这里！！！
+14. config文件 —— 环境变量3种：1）系统变量git config --system；2）用户变量git config --global；3）本地项目变量git config --local，存储位置：.git/config。
+15. 配置常用：1）查看所有配置	git config --list；2）配置用户名	git config --global user.name "你的用户名"；3）配置邮箱	git config --global user.email "你的邮箱"。
 
 
 
