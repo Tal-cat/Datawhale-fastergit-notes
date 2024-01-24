@@ -124,6 +124,19 @@ git config --list查看，配置正确
 9.  对分支进行整理：git rebase -i <commit>命令，对提交进行合并、废弃、修改提交信息等处理。需要注意的是如果提交 已经发布到远端，需要使用git push -f进行覆盖（仅限个人开发分支）。
 10.  原则上禁止对主分支等进行git push -f操作，涉及需要回退的，使用git revert <commit>。涉及多分枝代码同步，可以使用git cherry-pick命令。
 
+第八章 Github/Gitee使用说明（基操，感觉可以稍微前移）    
+1. github上的仓库一般都会包含readme文件。
+2. .gitignore文件可以用来忽略工作区的私有文件（例如本地配置、缓存文件、node_modules等）
+3. Fork操作创建一个仓库的副本，并将仓库的upstream指向原仓库。
+4. Watch操作可以向你的邮箱中推送该仓库的推送信息
+5. 注意更新fork的项目-Fetch upstream（汗颜，没更新过）：1）# 查看远程仓库有几个分支git remote -v 2）# 将仓库的原始地址加进去 git remote add upstream git@github.com:2951121599/repo_for_test_pr.git 3）# 再次查看远程仓库的分支 (会多上有仓库upstream) 4）git remote -v 5）# fetch将远程分支拉到本地 pull = fetch + merge (pull会做自动合并) + # 创建新分支 master/upstream git fetch upstream 6）# 查看远程分支 若跟本地分支名一样 然后做一下合并 git branch -r 7）# 和原始仓库的远程保持一致 rebase不会做合并操作,将当前分支的修改复制并放在目标分支的最后一次 而merge会将两个分支合在一起 # 因此没做贡献用rebase就够了 git rebase upstream/master 8）# 推送 git push
+6. **Explore板块**不仅可以根据你的兴趣进行项目的推荐，而且Trending榜展示了当前综合热度最高的项目。关注Trending可以随时掌握整个Github的最新动向.
+7. [没用过]快捷键见文档https://docs.github.com/cn/get-started/using-github/keyboard-shortcuts。
+8. 有高级搜索：star量超过10000的项目 stars:>10000
+9. 国内的代码托管平台：Gitee。
+
+
+
 
 
 
