@@ -112,7 +112,17 @@ git config --list查看，配置正确
 5. Master（Production）分⽀：记录历史发布版本。不能提交，由Release、Hotfix分⽀合并代码。
 6. 分支理解：1）⽣命周期：Master分⽀和Develop分⽀贯穿项⽬；其他分⽀均为承担特定职责的临时分⽀。2）项⽬阶段（时间上可能重叠）：i)开发阶段：主要涉及Feature分⽀、Develop分⽀；ii)发布阶段：主要涉及Release分⽀、Production分⽀、Develop分⽀；iii)紧急修复阶段 主要涉及Hotfix分⽀、Production分⽀、Develop分⽀。3)成员关注点: i)开发⼈员：关注Develop分⽀、Feature分⽀以及特殊阶段关注Hotfix、Release分⽀的bug修复；ii)测试⼈员：关注 Release分⽀、Hotfix分⽀的功能测试；iii)项⽬经理：关注Production分⽀、Release分⽀。
 
-
+第七章 Git提交规范    
+1. 一个commit包含如4条信息：1）commit message - 提交的内容相关描述；2）author & committer - 作者及提交者；3）changed files - 修改的文件；4）hash & parent - 提交内容的hash及在提交树上的位置
+2. Commit Message提交信息：一般可以包括header（必须有），body，footer。
+3. header包括<type>(<scope改动范围>): <short summary使用祈使句、现在时>。其中Type类型有：1）build: 涉及构建相关的改动；2）ci: 持续集成相关的改动；3）docs: 文档；4）feat: 新功能；5）fix: bug修复；6）perf: 性能相关改动；7）refactor: 重构相关（非bug、非新功能）；8）test: 测试相关，包括新增测试或者更改已有测试。
+4.  使用Git Hooks自动化校验commit message格式。可以用prepare-commit-msg对提交信息规范做说明，并用commit-msg对规范的执行 进行检查，脚本的非0的返回会中断本次提交。
+5.  注意要用相关的Git Hooks，需要在目录.git/hooks创建对应的文件，文件名 prepare-commit-msg 及commit-msg，并赋予可执行权限。
+6.  Git的提交不会包含.git目录，所以对应的hooks的改动并不会被提交到远程仓库中。我们可以在仓库根目录 创建.githooks文件夹并将代码放到该目录中，通过更改配置或者软连接的方式进行引用。
+7.  关于文件：1）提交前使用git diff查看文件的改动，使用git add添加期望进入提交的文件， 使用git status查看文件状态，最终使用git commit进行提交；2）单次提交仅提交相关的改动；3）密码、授权凭证、密钥等，不要提交。
+8.  文件常用命令：1）git reset <file> - 移除被添加的文件（提交之前）；2）git clean -f - 移除较多的未被追踪的中间文件；3）git checkout <file> - 回退对某个文件的改动（提交之前）。
+9.  对分支进行整理：git rebase -i <commit>命令，对提交进行合并、废弃、修改提交信息等处理。需要注意的是如果提交 已经发布到远端，需要使用git push -f进行覆盖（仅限个人开发分支）。
+10.  原则上禁止对主分支等进行git push -f操作，涉及需要回退的，使用git revert <commit>。涉及多分枝代码同步，可以使用git cherry-pick命令。
 
 
 
