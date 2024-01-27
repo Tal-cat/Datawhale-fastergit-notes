@@ -1,4 +1,6 @@
-# Datawhale-fastergit-notes
+# Datawhale-fastergit-notes    
+原教程传送门：https://github.com/datawhalechina/faster-git/tree/main    
+
 第一章 Git简介（准备工作）  
 分布式版本控制系统   
 首先git -version查看是否安装，本次使用git版本：2.39.3   
@@ -140,6 +142,11 @@ git config --list查看，配置正确
 2. GitHub Desktop：push commit to the origin remote：上传到fork的个人repo中。在完成个人仓库的代码更新后，还要注意个人仓库的分支和目标分支的先后情况，如果目标分支领先于fork分支（就是说人家已经发布了新版本），需要先通过fetch upstream操作进行更新后，再提交PR。
 3. TortoiseGit：简称 tgit， 中文名海龟 Git，【Win专属】（略）。
 4. Vscode Git
+
+第十章 Git团队协作以及合并时的diff工具   
+1. 仓库管理员（一般是仓库的创建者或者拥有者）先在Github上仓库的Settings页面中点击Add People按钮，添加合作者，并约定大致的Commit Message（提交信息）的格式，有fix，update，merge等词语放在提交消息的开头，表示这次提交的大致内容。
+2.  标准式的提交与合并-运用Pull Requests：比如fastergit就采用了Forking 工作流，先把仓库Fork到个人账号（为了避免误操作影响主分支，往往还需设置禁用向主仓库直接push，也就是禁用前一节所述的粗放式提交），然后再用PR请求的方式将fork的修改提交给仓库管理员审核，审核通过之后再合并入主分支。需要更加严谨的提交信息格式。
+3.  代码比较与冲突处理：使用Beyond Compare    
 
 
 
