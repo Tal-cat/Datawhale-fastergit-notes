@@ -135,6 +135,12 @@ git config --list查看，配置正确
 8. 有高级搜索：star量超过10000的项目 stars:>10000
 9. 国内的代码托管平台：Gitee。
 
+第九章 Git图形工具（Git GUI）    
+1. 常用的不多，图形界面方便，常用：GitHub Desktop，TortoiseGit以及Vscode Git。
+2. GitHub Desktop：push commit to the origin remote：上传到fork的个人repo中。在完成个人仓库的代码更新后，还要注意个人仓库的分支和目标分支的先后情况，如果目标分支领先于fork分支（就是说人家已经发布了新版本），需要先通过fetch upstream操作进行更新后，再提交PR。
+3. TortoiseGit：简称 tgit， 中文名海龟 Git，【Win专属】（略）。
+4. Vscode Git
+
 
 
 
